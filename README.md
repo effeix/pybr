@@ -1,10 +1,6 @@
 # pybr
 
-[![PyPI version](https://badge.fury.io/py/pybr.svg)](https://badge.fury.io/py/pybr)
-[![Build Status](https://github.com/effeix/pybr/actions/workflows/python-package.yml/badge.svg)](https://github.com/effeix/pybr/actions)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
-A Python library for Brazilian data and formats.
+Collection of utilities for handling Brazilian data, documents and formats.
 
 ## Overview
 
@@ -15,8 +11,8 @@ This library is aimed at developers who need to work with Brazilian data and wan
 ## Features
 
 - **Brazilian Documents**: Tools for validating, formatting, and cleaning taxpayer registry numbers.
-    - **CPF**: Support for individual taxpayer numbers.
-    - **CNPJ**: Support for company taxpayer numbers.
+  - **CPF**: Support for individual taxpayer numbers.
+  - **CNPJ**: Support for company taxpayer numbers, including 2026 alphanumeric format.
 - **Extensible**: Designed with a base structure to easily support other Brazilian data types in the future (e.g., dates, phone numbers).
 - **Type-hinted**: Fully type-hinted for better editor support and code quality.
 - **No Dependencies**: Lightweight and dependency-free.
@@ -38,7 +34,7 @@ Here are a few examples of how you can use `pybr`.
 The `CPF` class provides methods to handle CPF numbers.
 
 ```python
-from pybr.cpf import CPF
+from pybr import CPF
 
 # --- Validation ---
 # Note: Replace with a valid CPF for actual testing
@@ -64,7 +60,7 @@ print(f"Formatted CPF: {formatted_cpf}")
 
 
 # --- Cleaning ---
-dirty_cpf = "123.456.789/00"
+dirty_cpf = "123.456.789///00"
 clean_cpf = CPF.clean(dirty_cpf)
 print(f"Cleaned CPF: {clean_cpf}")
 # Cleaned CPF: 12345678900
@@ -84,11 +80,11 @@ except ValueError as e:
 The `CNPJ` class provides methods to handle CNPJ numbers.
 
 ```python
-from pybr.cnpj import CNPJ
+from pybr import CNPJ
 
 # --- Validation ---
 # Note: Replace with a valid CNPJ for actual testing
-cnpj_valid = "00.000.000/0001-91" 
+cnpj_valid = "06.990.590/0001-23" 
 cnpj_invalid = "11.111.111/1111-11"
 
 print(f"Is {cnpj_valid} valid? {CNPJ.is_valid(cnpj_valid)}")
@@ -99,17 +95,17 @@ print(f"Is {cnpj_invalid} valid? {CNPJ.is_valid(cnpj_invalid)}")
 
 
 # --- Formatting ---
-unformatted_cnpj = "00000000000191"
+unformatted_cnpj = "06990590000123"
 formatted_cnpj = CNPJ.format(unformatted_cnpj)
 print(f"Formatted CNPJ: {formatted_cnpj}")
-# Formatted CNPJ: 00.000.000/0001-91
+# Formatted CNPJ: 06.990.590/0001-23
 
 
 # --- Cleaning ---
-dirty_cnpj = "00.000.000-0001/91"
+dirty_cnpj = "06.990.590/0001-23"
 clean_cnpj = CNPJ.clean(dirty_cnpj)
 print(f"Cleaned CNPJ: {clean_cnpj}")
-# Cleaned CNPJ: 00000000000191
+# Cleaned CNPJ: 06990590000123
 
 
 # --- Enforcement ---
@@ -133,4 +129,4 @@ Contributions are welcome! If you have a feature request, bug report, or want to
 
 ## License
 
-This project is licensed under the GPL-3.0-only License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/effeix/pybr/blob/main/LICENSE) file for details.
