@@ -1,4 +1,4 @@
-.PHONY: clean build publish test
+.PHONY: clean build test
 
 clean:
 	@echo "🧹 Cleaning artifacts..."
@@ -13,8 +13,4 @@ build: clean
 
 test:
 	@echo "🧪 Running tests..."
-	uv run pytest
-
-publish: build
-	@echo "🚀 Publishing..."
-	uv publish
+	uv run nox
