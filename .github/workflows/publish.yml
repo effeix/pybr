@@ -8,7 +8,13 @@ on:
 jobs:
   pypi-publish:
     name: Build and Publish to PyPI
+    
     runs-on: ubuntu-latest
+
+    environment:
+      name: Publish
+      url: https://pypi.org/project/pybr/
+    
     permissions:
       # IMPORTANT: This permission is required for Trusted Publishing (OIDC)
       id-token: write
