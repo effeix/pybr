@@ -1,2 +1,4 @@
-def main() -> None:
-    print("Hello from pybr!")
+from .cnpj.cnpj import CNPJ
+from .cpf.cpf import CPF
+
+__all__ = ["CPF", "CNPJ"]
